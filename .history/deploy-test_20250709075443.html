@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Test - NEXUS DIGITAL</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .test-section { margin: 20px 0; padding: 20px; border: 2px solid #333; background: white; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .warning { color: orange; font-weight: bold; }
+        .section-test { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        #console-output { background: #000; color: #0f0; padding: 10px; font-family: monospace; height: 300px; overflow-y: scroll; }
+        .stats-test { display: flex; gap: 20px; margin: 20px 0; }
+        .stat-test { text-align: center; padding: 20px; background: #eee; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🚀 NEXUS DIGITAL - Deployment Test</h1>
+    
+    <div class="test-section">
+        <h2>📊 Stats Counter Test</h2>
+        <div class="stats-test">
+            <div class="stat-test">
+                <div class="stat-number" data-target="1287">0</div>
+                <div class="stat-label">ביטויים במקום 1 בגוגל</div>
+            </div>
+            <div class="stat-test">
+                <div class="stat-number" data-target="2500000">0</div>
+                <div class="stat-label">תקציב מנוהל</div>
+            </div>
+            <div class="stat-test">
+                <div class="stat-number" data-target="1500">0</div>
+                <div class="stat-label">מעל 1,500 אתרים שהקמנו</div>
+            </div>
+            <div class="stat-test">
+                <div class="stat-number" data-target="13">0</div>
+                <div class="stat-label">13 שנה בתחום הדיגיטל</div>
+            </div>
+        </div>
+        <button onclick="testStats()">Test Stats Animation</button>
+        <div id="stats-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 Navigation Test</h2>
+        <div>
+            <a href="#home">בית</a> |
+            <a href="#services">שיווק דיגיטלי</a> |
+            <a href="#stat">סטטיסטיקות</a> |
+            <a href="#service">שירותים</a> |
+            <a href="#portfolio">תיק עבודות</a> |
+            <a href="#contact">צור קשר</a>
+        </div>
+        <button onclick="testNavigation()">Test Navigation</button>
+        <div id="nav-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Mobile Menu Test</h2>
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="nav-logo">
+                    <span class="logo-text">NEXUS</span>
+                    <span class="logo-sub">DIGITAL</span>
+                </div>
+                <button class="close-btn" id="close-menu">&times;</button>
+            </div>
+            <ul class="mobile-menu-list">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#services">שיווק דיגיטלי</a></li>
+                <li><a href="#stat">סטטיסטיקות</a></li>
+                <li><a href="#service">שירותים</a></li>
+                <li><a href="#portfolio">תיק עבודות</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </div>
+        <button onclick="testMobileMenu()">Test Mobile Menu</button>
+        <div id="mobile-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Console Output</h2>
+        <div id="console-output"></div>
+    </div>
+
+    <script>
+        // Override console.log to capture output
+        const originalLog = console.log;
+        const consoleOutput = document.getElementById('console-output');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            consoleOutput.innerHTML += args.join(' ') + '<br>';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        // Test stats animation
+        function testStats() {
+            console.log('🧪 Testing stats animation...');
+            const results = document.getElementById('stats-results');
+            results.innerHTML = '';
+            
+            const counters = document.querySelectorAll(".stat-number");
+            if (counters.length === 0) {
+                results.innerHTML = '<div class="error">❌ No counters found!</div>';
+                return;
+            }
+            
+            results.innerHTML = '<div class="success">✅ Found ' + counters.length + ' counters</div>';
+            
+            counters.forEach((counter, index) => {
+                const target = parseInt(counter.getAttribute("data-target"));
+                if (target && !isNaN(target)) {
+                    let current = 0;
+                    const increment = target / 20;
+                    
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.textContent = Math.floor(current).toLocaleString();
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target.toLocaleString();
+                            console.log(`✅ Counter ${index} completed: ${target}`);
+                        }
+                    };
+                    updateCounter();
+                }
+            });
+        }
+
+        // Test navigation
+        function testNavigation() {
+            console.log('🧪 Testing navigation...');
+            const results = document.getElementById('nav-results');
+            results.innerHTML = '';
+            
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            let successCount = 0;
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute("href");
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    successCount++;
+                }
+            });
+            
+            if (successCount === navLinks.length) {
+                results.innerHTML = '<div class="success">✅ All navigation links work!</div>';
+            } else {
+                results.innerHTML = '<div class="error">❌ Some navigation links broken</div>';
+            }
+        }
+
+        // Test mobile menu
+        function testMobileMenu() {
+            console.log('🧪 Testing mobile menu...');
+            const results = document.getElementById('mobile-results');
+            results.innerHTML = '';
+            
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.getElementById('close-menu');
+            
+            if (hamburger && mobileMenu && closeMenu) {
+                results.innerHTML = '<div class="success">✅ Mobile menu elements found</div>';
+                
+                // Test toggle
+                mobileMenu.classList.add('open');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('open');
+                    results.innerHTML += '<div class="success">✅ Mobile menu toggle works</div>';
+                }, 1000);
+            } else {
+                results.innerHTML = '<div class="error">❌ Mobile menu elements missing</div>';
+            }
+        }
+
+        // Run all tests on load
+        window.addEventListener('load', function() {
+            console.log('🚀 Deployment test page loaded');
+            console.log('📊 Testing stats counters...');
+            testStats();
+            console.log('🔗 Testing navigation...');
+            testNavigation();
+            console.log('📱 Testing mobile menu...');
+            testMobileMenu();
+        });
+    </script>
+</body>
+</html> 

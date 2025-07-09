@@ -1,13 +1,9 @@
 // Smooth scrolling and navigation
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🚀 NEXUS DIGITAL - JavaScript loaded successfully!");
-  
   // Mobile menu toggle
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
   const closeMenu = document.getElementById("close-menu");
-
-  console.log("Mobile menu elements:", { hamburger: !!hamburger, mobileMenu: !!mobileMenu, closeMenu: !!closeMenu });
 
   if (hamburger && mobileMenu) {
   hamburger.addEventListener("click", function () {
@@ -68,23 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Animated counter for stats - Simplified and more reliable
   function animateStats() {
-    console.log("🚀 Starting stats animation...");
+    console.log("Starting stats animation...");
     const counters = document.querySelectorAll(".stat-number");
-    console.log("📊 Found counters:", counters.length);
-    
-    if (counters.length === 0) {
-      console.log("❌ No counters found! Checking for stats section...");
-      const statsSection = document.getElementById('stat');
-      console.log("📈 Stats section found:", !!statsSection);
-      if (statsSection) {
-        console.log("📈 Stats section HTML:", statsSection.innerHTML.substring(0, 200) + "...");
-      }
-      return;
-    }
+    console.log("Found counters:", counters.length);
     
     counters.forEach((counter, index) => {
       const target = parseInt(counter.getAttribute("data-target"));
-      console.log(`📊 Counter ${index}: target = ${target}, current text = "${counter.textContent}"`);
+      console.log(`Counter ${index}: target = ${target}`);
       
       if (target && !isNaN(target)) {
         let current = 0;
@@ -97,14 +83,12 @@ document.addEventListener("DOMContentLoaded", function () {
             requestAnimationFrame(updateCounter);
           } else {
             counter.textContent = target.toLocaleString();
-            console.log(`✅ Counter ${index} completed: ${target}`);
+            console.log(`Counter ${index} completed: ${target}`);
           }
         };
         
         // Start animation after a short delay
         setTimeout(updateCounter, 500 + (index * 200));
-      } else {
-        console.log(`❌ Counter ${index}: Invalid target value: ${target}`);
       }
     });
   }

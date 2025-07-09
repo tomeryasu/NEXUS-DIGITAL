@@ -1,13 +1,9 @@
 // Smooth scrolling and navigation
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🚀 NEXUS DIGITAL - JavaScript loaded successfully!");
-  
   // Mobile menu toggle
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
   const closeMenu = document.getElementById("close-menu");
-
-  console.log("Mobile menu elements:", { hamburger: !!hamburger, mobileMenu: !!mobileMenu, closeMenu: !!closeMenu });
 
   if (hamburger && mobileMenu) {
   hamburger.addEventListener("click", function () {
@@ -66,67 +62,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Animated counter for stats - Simplified and more reliable
-  function animateStats() {
-    console.log("🚀 Starting stats animation...");
-    const counters = document.querySelectorAll(".stat-number");
-    console.log("📊 Found counters:", counters.length);
-    
-    if (counters.length === 0) {
-      console.log("❌ No counters found! Checking for stats section...");
-      const statsSection = document.getElementById('stat');
-      console.log("📈 Stats section found:", !!statsSection);
-      if (statsSection) {
-        console.log("📈 Stats section HTML:", statsSection.innerHTML.substring(0, 200) + "...");
-      }
-      return;
-    }
-    
-    counters.forEach((counter, index) => {
-      const target = parseInt(counter.getAttribute("data-target"));
-      console.log(`📊 Counter ${index}: target = ${target}, current text = "${counter.textContent}"`);
-      
-      if (target && !isNaN(target)) {
-        let current = 0;
-        const increment = target / 50; // Faster animation
-        
+  // Animated counter for stats
+  const counters = document.querySelectorAll(".stat-number");
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute("data-target"));
+    let current = 0;
+        const increment = target / 100;
+
         const updateCounter = () => {
-          if (current < target) {
+      if (current < target) {
             current += increment;
             counter.textContent = Math.floor(current).toLocaleString();
             requestAnimationFrame(updateCounter);
-          } else {
+      } else {
             counter.textContent = target.toLocaleString();
-            console.log(`✅ Counter ${index} completed: ${target}`);
           }
         };
-        
-        // Start animation after a short delay
-        setTimeout(updateCounter, 500 + (index * 200));
-      } else {
-        console.log(`❌ Counter ${index}: Invalid target value: ${target}`);
+        updateCounter();
+        counterObserver.unobserve(counter);
       }
     });
-  }
+  }, observerOptions);
 
-  // Run stats animation when page loads
-  animateStats();
-  
-  // Also run when stats section comes into view
-  const statsSection = document.getElementById('stat');
-  if (statsSection) {
-    const statsObserver = new IntersectionObserver(function (entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("Stats section is visible, animating...");
-          animateStats();
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    statsObserver.observe(statsSection);
-  }
+  counters.forEach(counter => counterObserver.observe(counter));
 
   // Intersection Observer for scroll animations
   const animationObserverOptions = {

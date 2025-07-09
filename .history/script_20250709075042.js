@@ -1,16 +1,12 @@
 // Smooth scrolling and navigation
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🚀 NEXUS DIGITAL - JavaScript loaded successfully!");
-  
   // Mobile menu toggle
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
   const closeMenu = document.getElementById("close-menu");
 
-  console.log("Mobile menu elements:", { hamburger: !!hamburger, mobileMenu: !!mobileMenu, closeMenu: !!closeMenu });
-
   if (hamburger && mobileMenu) {
-  hamburger.addEventListener("click", function () {
+    hamburger.addEventListener("click", function () {
       mobileMenu.classList.add("open");
       document.body.style.overflow = "hidden";
     });
@@ -66,30 +62,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Animated counter for stats - Simplified and more reliable
-  function animateStats() {
-    console.log("🚀 Starting stats animation...");
-    const counters = document.querySelectorAll(".stat-number");
-    console.log("📊 Found counters:", counters.length);
-    
-    if (counters.length === 0) {
-      console.log("❌ No counters found! Checking for stats section...");
-      const statsSection = document.getElementById('stat');
-      console.log("📈 Stats section found:", !!statsSection);
-      if (statsSection) {
-        console.log("📈 Stats section HTML:", statsSection.innerHTML.substring(0, 200) + "...");
-      }
-      return;
-    }
-    
-    counters.forEach((counter, index) => {
+  // Animated counter for stats - Run immediately on page load
+  const counters = document.querySelectorAll(".stat-number");
+  
+  function animateCounters() {
+    counters.forEach(counter => {
       const target = parseInt(counter.getAttribute("data-target"));
-      console.log(`📊 Counter ${index}: target = ${target}, current text = "${counter.textContent}"`);
-      
-      if (target && !isNaN(target)) {
+      let current = 0;
+      const increment = target / 100;
+      const duration = 2000; // 2 seconds
+      const stepTime = duration / 100;
+
+      const updateCounter = () => {
+        if (current < target) {
+          current += increment;
+          counter.textContent = Math.floor(current).toLocaleString();
+          setTimeout(updateCounter, stepTime);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      };
+      updateCounter();
+    });
+  }
+
+  // Run counter animation after a short delay
+  setTimeout(animateCounters, 1000);
+
+  // Also run on scroll for better UX
+  const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute("data-target"));
         let current = 0;
-        const increment = target / 50; // Faster animation
-        
+        const increment = target / 100;
+
         const updateCounter = () => {
           if (current < target) {
             current += increment;
@@ -97,36 +105,15 @@ document.addEventListener("DOMContentLoaded", function () {
             requestAnimationFrame(updateCounter);
           } else {
             counter.textContent = target.toLocaleString();
-            console.log(`✅ Counter ${index} completed: ${target}`);
           }
         };
-        
-        // Start animation after a short delay
-        setTimeout(updateCounter, 500 + (index * 200));
-      } else {
-        console.log(`❌ Counter ${index}: Invalid target value: ${target}`);
+        updateCounter();
+        counterObserver.unobserve(counter);
       }
     });
-  }
+  }, { threshold: 0.5, rootMargin: "0px 0px -50px 0px" });
 
-  // Run stats animation when page loads
-  animateStats();
-  
-  // Also run when stats section comes into view
-  const statsSection = document.getElementById('stat');
-  if (statsSection) {
-    const statsObserver = new IntersectionObserver(function (entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("Stats section is visible, animating...");
-          animateStats();
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    statsObserver.observe(statsSection);
-  }
+  counters.forEach(counter => counterObserver.observe(counter));
 
   // Intersection Observer for scroll animations
   const animationObserverOptions = {
@@ -177,11 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactForm) {
     contactForm.addEventListener("submit", function(e) {
       e.preventDefault();
-
+      
       // Get form data
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
-
+      
       // Here you would typically send the data to your server
       console.log("Form submitted:", data);
       
@@ -217,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       const contactSection = document.getElementById('contact');
-    if (contactSection) {
+      if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
       }
     });
