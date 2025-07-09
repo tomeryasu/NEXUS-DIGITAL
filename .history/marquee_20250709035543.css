@@ -1,0 +1,45 @@
+/* Simple Marquee CSS */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  padding: 20px 0;
+  margin: 40px 0;
+  border: 2px solid red; /* Debug border */
+}
+
+.marquee-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 10px 0;
+  min-height: 40px; /* Ensure minimum height */
+  border: 1px solid yellow; /* Debug border */
+}
+
+.marquee-line span {
+  margin-right: 50px;
+  flex-shrink: 0;
+  border: 1px solid blue; /* Debug border */
+}
+
+/* Highlight styling */
+.marquee-line .highlight {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .marquee-line {
+    font-size: 18px;
+  }
+  
+  .marquee-line span {
+    margin-right: 30px;
+  }
+} 

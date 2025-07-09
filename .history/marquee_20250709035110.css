@@ -1,0 +1,80 @@
+/* Bulletproof Marquee CSS */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  padding: 20px 0;
+  margin: 40px 0;
+}
+
+.marquee-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.marquee-line span {
+  margin-right: 50px;
+  flex-shrink: 0;
+}
+
+.marquee-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.marquee-right {
+  animation: scroll-right 30s linear infinite;
+  margin-top: 20px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Ensure visibility */
+.marquee-container,
+.marquee-line,
+.marquee-line span {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.marquee-line {
+  display: flex !important;
+}
+
+/* Highlight styling */
+.marquee-line .highlight {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .marquee-line {
+    font-size: 18px;
+  }
+  
+  .marquee-line span {
+    margin-right: 30px;
+  }
+} 

@@ -1,0 +1,70 @@
+/* Pure CSS Marquee Solution */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  margin: 40px 0;
+}
+
+.marquee-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: 5rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 10px 0;
+  min-height: 40px;
+}
+
+.marquee-line span {
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+/* First marquee - moves left */
+#marquee1 {
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Second marquee - moves right */
+#marquee2 {
+  animation: scroll-right 20s linear infinite;
+}
+
+/* Keyframe animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Highlight styling */
+.marquee-line .highlight {
+  color: #a02a6b;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .marquee-line {
+    font-size: 3rem;
+  }
+  
+  .marquee-line span {
+    margin-right: 20px;
+  }
+} 

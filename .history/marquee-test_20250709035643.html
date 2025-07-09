@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marquee Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #333;
+            font-family: Arial, sans-serif;
+        }
+        
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            padding: 20px 0;
+            margin: 40px 0;
+        }
+
+        .marquee-line {
+            display: flex;
+            white-space: nowrap;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            min-height: 40px;
+        }
+
+        .marquee-line span {
+            margin-right: 50px;
+            flex-shrink: 0;
+        }
+
+        /* First marquee - moves left */
+        #marquee1 {
+            animation: scroll-left 20s linear infinite;
+        }
+
+        /* Second marquee - moves right */
+        #marquee2 {
+            animation: scroll-right 20s linear infinite;
+        }
+
+        /* Keyframe animations */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; text-align: center;">Marquee Test - Pure CSS</h1>
+    
+    <div class="marquee-wrapper">
+        <div class="marquee-line" id="marquee1">
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+        </div>
+        <div class="marquee-line" id="marquee2">
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+        </div>
+    </div>
+
+    <p style="color: white; text-align: center; margin-top: 40px;">
+        This is a pure CSS marquee solution. No JavaScript required!
+    </p>
+</body>
+</html> 

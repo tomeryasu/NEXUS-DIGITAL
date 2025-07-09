@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marquee Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #333;
+            font-family: Arial, sans-serif;
+        }
+        
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            padding: 20px 0;
+            margin: 40px 0;
+        }
+
+        .marquee-line {
+            display: flex;
+            white-space: nowrap;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+
+        .marquee-line span {
+            margin-right: 50px;
+            flex-shrink: 0;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; text-align: center;">Marquee Test</h1>
+    
+    <div class="marquee-wrapper">
+        <div class="marquee-line" id="marquee1">
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+            <span>DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span></span>
+        </div>
+        <div class="marquee-line" id="marquee2">
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+            <span><span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT</span>
+        </div>
+    </div>
+
+    <script>
+        // Marquee Animation
+        function animateMarquee() {
+            const marquee1 = document.getElementById('marquee1');
+            const marquee2 = document.getElementById('marquee2');
+            
+            if (marquee1 && marquee2) {
+                let position1 = 0;
+                let position2 = 0;
+                
+                function animate() {
+                    // First marquee moves left
+                    position1 -= 1;
+                    if (position1 <= -marquee1.scrollWidth / 2) {
+                        position1 = 0;
+                    }
+                    marquee1.style.transform = `translateX(${position1}px)`;
+                    
+                    // Second marquee moves right
+                    position2 += 1;
+                    if (position2 >= marquee2.scrollWidth / 2) {
+                        position2 = 0;
+                    }
+                    marquee2.style.transform = `translateX(${position2}px)`;
+                    
+                    requestAnimationFrame(animate);
+                }
+                
+                animate();
+            }
+        }
+        
+        // Start marquee animation when page loads
+        window.addEventListener('load', animateMarquee);
+    </script>
+</body>
+</html> 

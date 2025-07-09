@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marquee Test</title>
+    <style>
+        .marquee-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .marquee-row {
+            overflow: hidden;
+            white-space: nowrap;
+            height: 60px;
+            line-height: 60px;
+            margin: 10px 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #fff;
+            animation: scroll-left 25s linear infinite;
+        }
+
+        .marquee-text.reverse {
+            animation: scroll-right 25s linear infinite;
+        }
+
+        .highlight {
+            color: #a02a6b;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee-section">
+        <div class="marquee-row">
+            <div class="marquee-content">
+                <div class="marquee-text">
+                    DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    DEVELOPMENT - <span class="highlight">ADVERTISING</span> - STRATEGY - BRANDING - <span class="highlight">CREATIVE</span>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-row">
+            <div class="marquee-content">
+                <div class="marquee-text reverse">
+                    <span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="highlight">MARKETING</span> - GOOGLE ADS - SEO - <span class="highlight">SOCIAL MEDIA</span> - CONTENT
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

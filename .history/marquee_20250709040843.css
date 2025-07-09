@@ -1,0 +1,70 @@
+/* Pure CSS Marquee Solution */
+section.development .marquee .loop-container-wrapper .loop-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  margin: 0 0 40px 0;
+}
+
+section.development .marquee .loop-container-wrapper .loop-container .marquee-line {
+  display: flex;
+  white-space: nowrap;
+  font-size: 5rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 10px 0;
+  min-height: 40px;
+}
+
+section.development .marquee .loop-container-wrapper .loop-container .marquee-line span {
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+/* First marquee - moves left */
+section.development .marquee .loop-container-wrapper .loop-container #marquee1 {
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Second marquee - moves right */
+section.development .marquee .loop-container-wrapper .loop-container #marquee2 {
+  animation: scroll-right 20s linear infinite;
+}
+
+/* Keyframe animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Highlight styling */
+section.development .marquee .loop-container-wrapper .loop-container .marquee-line .highlight {
+  color: #a02a6b;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section.development .marquee .loop-container-wrapper .loop-container .marquee-line {
+    font-size: 3rem;
+  }
+  
+  section.development .marquee .loop-container-wrapper .loop-container .marquee-line span {
+    margin-right: 20px;
+  }
+} 

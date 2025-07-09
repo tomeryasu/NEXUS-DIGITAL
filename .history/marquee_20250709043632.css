@@ -1,0 +1,65 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  direction: ltr; /* Ensures left-to-right animation even in RTL pages */
+}
+
+.loop-container-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.loop-container {
+  display: flex;
+  width: max-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.marquee-left .loop-container {
+  animation-name: marquee-left;
+  animation-duration: 40s;
+}
+
+.marquee-right .loop-container {
+  animation-name: marquee-right;
+  animation-duration: 40s;
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.item {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 1.5rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.item.r { color: #fff; }
+.item.bl { color: #a02a6b; }
+.sep {
+  font-size: 2.5rem;
+  color: #a02a6b;
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .item, .sep {
+    font-size: 1.5rem;
+    margin: 0 0.7rem;
+  }
+} 
