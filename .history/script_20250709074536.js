@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
   counters.forEach(counter => counterObserver.observe(counter));
 
   // Intersection Observer for scroll animations
-  const animationObserverOptions = {
+  const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
   };
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     });
-  }, animationObserverOptions);
+  }, observerOptions);
 
   // Observe all animated elements
   document.querySelectorAll("[data-aos]").forEach((el) => observer.observe(el));

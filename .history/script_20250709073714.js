@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
   counters.forEach(counter => counterObserver.observe(counter));
 
   // Intersection Observer for scroll animations
-  const animationObserverOptions = {
+  const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
   };
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     });
-  }, animationObserverOptions);
+  }, observerOptions);
 
   // Observe all animated elements
   document.querySelectorAll("[data-aos]").forEach((el) => observer.observe(el));
@@ -189,23 +189,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Add simple fade-in animations for elements when they come into view
-  const fadeElements = document.querySelectorAll('.service-card, .advanced-item, .category-item, .client-card');
-  const fadeObserver = new IntersectionObserver(function (entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
+  // Initialize AOS-like animations
+  function initAnimations() {
+    const animatedElements = document.querySelectorAll("[data-aos]");
+    animatedElements.forEach(el => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(30px)";
+      el.style.transition = "all 0.8s ease";
     });
-  }, { threshold: 0.1 });
+  }
 
-  fadeElements.forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.6s ease";
-    fadeObserver.observe(el);
-  });
+  initAnimations();
 });
 
 // Utility functions

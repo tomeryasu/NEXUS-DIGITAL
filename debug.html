@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - NEXUS DIGITAL</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .debug-section { margin: 20px 0; padding: 20px; border: 2px solid #333; background: white; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .warning { color: orange; font-weight: bold; }
+        .section-test { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        #console-output { background: #000; color: #0f0; padding: 10px; font-family: monospace; height: 200px; overflow-y: scroll; }
+    </style>
+</head>
+<body>
+    <h1>🔍 NEXUS DIGITAL - Debug Page</h1>
+    
+    <div class="debug-section">
+        <h2>📋 Section Tests</h2>
+        <div id="section-tests"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>🔗 Navigation Tests</h2>
+        <button onclick="testNavigation()">Test Navigation Links</button>
+        <div id="nav-results"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>🎯 JavaScript Tests</h2>
+        <button onclick="testJavaScript()">Test JavaScript</button>
+        <button onclick="testElements()">Test DOM Elements</button>
+        <div id="js-results"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>📱 Mobile Menu Test</h2>
+        <button onclick="testMobileMenu()">Test Mobile Menu</button>
+        <div id="mobile-results"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>🎨 CSS Tests</h2>
+        <button onclick="testCSS()">Test CSS Loading</button>
+        <div id="css-results"></div>
+    </div>
+
+    <div class="debug-section">
+        <h2>📊 Console Output</h2>
+        <div id="console-output"></div>
+    </div>
+
+    <script>
+        // Override console.log to capture output
+        const originalLog = console.log;
+        const consoleOutput = document.getElementById('console-output');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            consoleOutput.innerHTML += args.join(' ') + '<br>';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        // Test sections
+        function testSections() {
+            const sections = [
+                { id: 'home', name: 'בית' },
+                { id: 'services', name: 'שיווק דיגיטלי' },
+                { id: 'stat', name: 'סטטיסטיקות' },
+                { id: 'service', name: 'שירותים' },
+                { id: 'portfolio', name: 'תיק עבודות' },
+                { id: 'contact', name: 'צור קשר' }
+            ];
+
+            const results = document.getElementById('section-tests');
+            results.innerHTML = '';
+
+            sections.forEach(section => {
+                const element = document.getElementById(section.id);
+                const div = document.createElement('div');
+                div.className = 'section-test';
+                
+                if (element) {
+                    div.innerHTML = `<span class="success">✅ ${section.name} (#${section.id}) - FOUND</span>`;
+                    console.log(`✅ Section #${section.id} exists`);
+                } else {
+                    div.innerHTML = `<span class="error">❌ ${section.name} (#${section.id}) - MISSING</span>`;
+                    console.log(`❌ Section #${section.id} missing`);
+                }
+                results.appendChild(div);
+            });
+        }
+
+        // Test navigation
+        function testNavigation() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            const results = document.getElementById('nav-results');
+            results.innerHTML = '';
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                const div = document.createElement('div');
+                div.className = 'section-test';
+                
+                if (targetElement) {
+                    div.innerHTML = `<span class="success">✅ ${href} → FOUND</span>`;
+                } else {
+                    div.innerHTML = `<span class="error">❌ ${href} → MISSING</span>`;
+                }
+                results.appendChild(div);
+            });
+        }
+
+        // Test JavaScript
+        function testJavaScript() {
+            const results = document.getElementById('js-results');
+            results.innerHTML = '';
+
+            // Test basic JavaScript
+            try {
+                const test = 'JavaScript is working';
+                results.innerHTML += `<div class="section-test"><span class="success">✅ ${test}</span></div>`;
+                console.log('✅ JavaScript is working');
+            } catch (error) {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ JavaScript error: ${error}</span></div>`;
+            }
+
+            // Test DOM manipulation
+            try {
+                const testDiv = document.createElement('div');
+                testDiv.textContent = 'DOM manipulation works';
+                results.innerHTML += `<div class="section-test"><span class="success">✅ DOM manipulation works</span></div>`;
+                console.log('✅ DOM manipulation works');
+            } catch (error) {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ DOM error: ${error}</span></div>`;
+            }
+        }
+
+        // Test elements
+        function testElements() {
+            const results = document.getElementById('js-results');
+            const elements = [
+                'hamburger', 'mobile-menu', 'close-menu', 'contact-btn', 'contactForm'
+            ];
+
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    results.innerHTML += `<div class="section-test"><span class="success">✅ #${id} - FOUND</span></div>`;
+                    console.log(`✅ Element #${id} exists`);
+                } else {
+                    results.innerHTML += `<div class="section-test"><span class="error">❌ #${id} - MISSING</span></div>`;
+                    console.log(`❌ Element #${id} missing`);
+                }
+            });
+        }
+
+        // Test mobile menu
+        function testMobileMenu() {
+            const results = document.getElementById('mobile-results');
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.getElementById('close-menu');
+
+            results.innerHTML = '';
+
+            if (hamburger) {
+                results.innerHTML += `<div class="section-test"><span class="success">✅ Hamburger menu - FOUND</span></div>`;
+            } else {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ Hamburger menu - MISSING</span></div>`;
+            }
+
+            if (mobileMenu) {
+                results.innerHTML += `<div class="section-test"><span class="success">✅ Mobile menu - FOUND</span></div>`;
+            } else {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ Mobile menu - MISSING</span></div>`;
+            }
+
+            if (closeMenu) {
+                results.innerHTML += `<div class="section-test"><span class="success">✅ Close button - FOUND</span></div>`;
+            } else {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ Close button - MISSING</span></div>`;
+            }
+        }
+
+        // Test CSS
+        function testCSS() {
+            const results = document.getElementById('css-results');
+            results.innerHTML = '';
+
+            // Test if styles are loaded
+            const computedStyle = window.getComputedStyle(document.body);
+            const fontFamily = computedStyle.fontFamily;
+            
+            if (fontFamily && fontFamily !== 'initial') {
+                results.innerHTML += `<div class="section-test"><span class="success">✅ CSS is loaded</span></div>`;
+                console.log('✅ CSS is loaded');
+            } else {
+                results.innerHTML += `<div class="section-test"><span class="error">❌ CSS not loaded</span></div>`;
+                console.log('❌ CSS not loaded');
+            }
+        }
+
+        // Run all tests on load
+        window.addEventListener('load', function() {
+            console.log('🚀 Debug page loaded');
+            testSections();
+            testNavigation();
+            testJavaScript();
+            testElements();
+            testMobileMenu();
+            testCSS();
+        });
+    </script>
+</body>
+</html> 

@@ -2021,8 +2021,8 @@ h2 span {
 
 /* --- AOS Animation Classes --- */
 [data-aos="fade-up"] {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 0;
+  transform: translateY(30px);
   transition: all 0.8s ease;
 }
 
@@ -2032,8 +2032,8 @@ h2 span {
 }
 
 [data-aos="fade-left"] {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 0;
+  transform: translateX(50px);
   transition: all 0.8s ease;
 }
 
@@ -2043,8 +2043,8 @@ h2 span {
 }
 
 [data-aos="fade-right"] {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 0;
+  transform: translateX(-50px);
   transition: all 0.8s ease;
 }
 

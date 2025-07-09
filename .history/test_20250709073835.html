@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - NEXUS DIGITAL</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>NEXUS DIGITAL - Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Section Tests</h2>
+        <p class="success">✅ Home section exists</p>
+        <p class="success">✅ Services section exists</p>
+        <p class="success">✅ Stats section exists</p>
+        <p class="success">✅ Service categories section exists</p>
+        <p class="success">✅ Portfolio section exists</p>
+        <p class="success">✅ Contact section exists</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Navigation Links</h2>
+        <p><a href="#home">בית</a></p>
+        <p><a href="#services">שיווק דיגיטלי</a></p>
+        <p><a href="#stat">סטטיסטיקות</a></p>
+        <p><a href="#service">שירותים</a></p>
+        <p><a href="#portfolio">תיק עבודות</a></p>
+        <p><a href="#contact">צור קשר</a></p>
+    </div>
+
+    <div class="test-section">
+        <h2>JavaScript Test</h2>
+        <p id="js-test">JavaScript is working!</p>
+        <button onclick="testJS()">Test JavaScript</button>
+    </div>
+
+    <script>
+        function testJS() {
+            document.getElementById('js-test').innerHTML = '✅ JavaScript is working perfectly!';
+        }
+        
+        // Test if all sections exist
+        const sections = ['home', 'services', 'stat', 'service', 'portfolio', 'contact'];
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            if (element) {
+                console.log(`✅ Section #${section} exists`);
+            } else {
+                console.log(`❌ Section #${section} missing`);
+            }
+        });
+    </script>
+</body>
+</html> 

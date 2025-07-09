@@ -211,47 +211,46 @@
     </section>
 
     <!-- Analytics Section -->
-    <section class="analytics" id="stat">
-      <div class="container">
-        <h2><span>מכוונים למטרה</span></h2>
-        <div class="headline">
-          <span class="highlight">יותר ממוקד.</span> <span class="highlight">יותר חשיפה.</span> יותר לקוחות.
-        </div>
-        <p class="description">
-          נעים מאוד, גאו-מדיה סוכנות דיגיטל לעסקים המתמחה בפתרונות פרסום ושיווק לעסקים. בין אם מדובר בסטארטאפ, עסק מקומי או חברה ותיקה אנו יודעים איך לבנות את האסטרטגיה השיווקית הנכונה באמצעות פרסום נכון ורגושׁ ממוקד.
-          <br><br>
-          הצוות של סוכנות דיגיטל גאו מדיה הולך יד ביד בקמפיין השיווק שלך באמצעות הגדרת מטרות ויעדים בצורה המקצועית ביותר. הניסיון הרב שלנו בדיגיטל גילה שלא חייבים לשפוך הרים של כסף כדי להביא תוצאות, צריך לבחור את האנשים הנכונים. בין אם הלקוחות שלך נמצאים בגוגל, בפייסבוק או באינסטגרם – אנחנו יודעים איך להגיע אליהם.
-        </p>
-        <div class="dots">•••••</div>
 
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-number" data-target="1287">0</div>
-            <div class="stat-label">ביטויים במקום 1 בגוגל</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number" data-target="2500000">0</div>
-            <div class="stat-label">תקציב מנוהל</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number" data-target="1500">0</div>
-            <div class="stat-label">מעל 1,500 אתרים שהקמנו</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number" data-target="13">0</div>
-            <div class="stat-label">13 שנה בתחום הדיגיטל</div>
-          </div>
-        </div>
+      <section class="container">
+    <h2><span>מכוונים למטרה</span></h2>
+    <div class="headline">
+      <span class="highlight">יותר ממוקד.</span> <span class="highlight">יותר חשיפה.</span> יותר לקוחות.
+    </div>
+    <p class="description">
+      נעים מאוד, גאו-מדיה סוכנות דיגיטל לעסקים המתמחה בפתרונות פרסום ושיווק לעסקים. בין אם מדובר בסטארטאפ, עסק מקומי או חברה ותיקה אנו יודעים איך לבנות את האסטרטגיה השיווקית הנכונה באמצעות פרסום נכון ורגושׁ ממוקד.
+      <br><br>
+      הצוות של סוכנות דיגיטל גאו מדיה הולך יד ביד בקמפיין השיווק שלך באמצעות הגדרת מטרות ויעדים בצורה המקצועית ביותר. הניסיון הרב שלנו בדיגיטל גילה שלא חייבים לשפוך הרים של כסף כדי להביא תוצאות, צריך לבחור את האנשים הנכונים. בין אם הלקוחות שלך נמצאים בגוגל, בפייסבוק או באינסטגרם – אנחנו יודעים איך להגיע אליהם.
+    </p>
+    <div class="dots">•••••</div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number" data-target="1287">0</div>
+        <div class="stat-label">ביטויים במקום 1 בגוגל</div>
       </div>
-    </section>
+      <div class="stat" id="stat">
+        <div class="stat-number" data-target="2500000">0</div>
+        <div class="stat-label">תקציב מנוהל</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="1500">0</div>
+        <div class="stat-label">מעל 1,500 אתרים שהקמנו</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="13">0</div>
+        <div class="stat-label">13 שנה בתחום הדיגיטל</div>
+      </div>
+    </div>
+  </section>
 
-    <section class="logos">
-      <img src="./src/googl-ads-v-1.webp" alt="Google Ads" />
-      <img src="./src/tik-tok-partner.webp" alt="TikTok" />
-      <img src="./src/instegram.webp" alt="Instagram" />
-      <img src="./src/FACEBOOK.webp" alt="Facebook" />
-      <img src="./src/Meta.webp" alt="Meta" />
-    </section>
+  <section class="logos">
+    <img src="./src/googl-ads-v-1.webp" alt="Google Ads" />
+    <img src="./src/tik-tok-partner.webp" alt="TikTok" />
+    <img src="./src/instegram.webp" alt="Instagram" />
+    <img src="./src/FACEBOOK.webp" alt="Facebook" />
+    <img src="./src/Meta.webp" alt="Meta" />
+  </section>
 
 <!-- Service Categories -->
 <section class="service-categories" id="service">
@@ -596,6 +595,43 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Mobile menu script (if not already present)
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeMenu = document.getElementById("closeMenu");
+      if (menuToggle && mobileMenu && closeMenu) {
+        function openMenu() {
+          mobileMenu.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        function closeMenuFunc() {
+          mobileMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+        menuToggle.addEventListener("click", openMenu);
+        closeMenu.addEventListener("click", closeMenuFunc);
+        document.addEventListener("click", function(event) {
+          if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+            closeMenuFunc();
+          }
+        });
+      }
+      // Smooth scroll for .contact-btn
+      document.querySelectorAll('.contact-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Marquee is now handled by pure CSS animations
+
+
+    </script>
     <button class="sticky-contact-btn" id="stickyContactBtn" style="display: none;">צור קשר</button>
   </body>
 </html>
